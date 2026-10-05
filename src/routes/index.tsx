@@ -4,12 +4,12 @@ import Portfolio from "@/components/portfolio";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "[NAME] | Software Developer Portfolio" },
+      { title: "Balaji M | Software Developer Portfolio" },
       {
         name: "description",
         content: "A portfolio of software development projects, technical skills, experience, and certifications.",
       },
-      { property: "og:title", content: "[NAME] | Software Developer Portfolio" },
+      { property: "og:title", content: "Balaji M | Software Developer Portfolio" },
       {
         property: "og:description",
         content: "A portfolio of software development projects, technical skills, experience, and certifications.",
