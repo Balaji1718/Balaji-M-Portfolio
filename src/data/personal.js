@@ -1,6 +1,6 @@
 const personal = {
-  name: "[NAME]",
-  initials: "[N]",
+  name: "Balaji M",
+  initials: "BM",
   degree: "B.Tech · Information Technology",
   role: "Aspiring Software Developer",
   location: "[LOCATION]",

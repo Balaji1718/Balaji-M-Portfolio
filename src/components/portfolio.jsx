@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   ArrowDownRight,
   ArrowRight,
@@ -288,7 +289,7 @@ function Notebook({ project, index, setIndex, opened, setOpened }) {
   }
   return (
     <div className="grid gap-4 lg:grid-cols-12" aria-live="polite">
-      <article key={project.id} className="journal-surface journal-lines rounded-2xl border border-border p-5 sm:p-8 lg:col-span-7">
+      <motion.article key={project.id} initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.22 }} className="journal-surface journal-lines rounded-2xl border border-border p-5 sm:p-8 lg:col-span-7">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Project {String(project.id).padStart(2, "0")} · {displayValue(project.category)}</span>
           <span className="rounded-full bg-accent/10 px-3 py-1 font-mono text-[10px] text-accent">ENGINEERING NOTE</span>
@@ -298,7 +299,7 @@ function Notebook({ project, index, setIndex, opened, setOpened }) {
         <div className="mt-6"><ProjectPreview project={project} /></div>
         <ProjectDetails project={project} />
         <div className="mt-6"><ProjectLinks project={project} /></div>
-      </article>
+      </motion.article>
       <aside className="journal-surface rounded-2xl border border-border p-5 sm:p-7 lg:col-span-5">
         <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-accent">Notebook index</p>
         <h4 className="mt-3 text-xl font-semibold text-ink">Projects, in progress.</h4>
@@ -354,7 +355,11 @@ function Projects() {
             <Button variant="ghost" aria-pressed={mode === "classic"} onClick={() => setMode("classic")} className={`min-h-9 rounded-full px-4 text-xs ${mode === "classic" ? "bg-accent text-accent-foreground hover:bg-accent/90 hover:text-accent-foreground" : "text-muted-foreground"}`}>Classic</Button>
           </div>
         </div>
-        {mode === "notebook" ? <Notebook project={selectedProject} index={index} setIndex={setIndex} opened={opened} setOpened={setOpened} /> : <div className="grid gap-5 md:grid-cols-2">{projects.map((project, projectIndex) => <ProjectCard key={project.id} project={project} index={projectIndex} />)}</div>}
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div key={`${mode}-${mode === "notebook" ? opened ? "open" : "cover" : "list"}`} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.2 }}>
+            {mode === "notebook" ? <Notebook project={selectedProject} index={index} setIndex={setIndex} opened={opened} setOpened={setOpened} /> : <div className="grid gap-5 md:grid-cols-2">{projects.map((project, projectIndex) => <ProjectCard key={project.id} project={project} index={projectIndex} />)}</div>}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
