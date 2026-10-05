@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep the portfolio as a single TanStack page, with reusable JSX presentation and editable JavaScript content modules; the hosted app runtime requires its existing TanStack route entry.
