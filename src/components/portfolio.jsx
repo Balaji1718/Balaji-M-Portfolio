@@ -400,7 +400,7 @@ function Contact() {
   const [notice, setNotice] = useState("");
   function handleSubmit(event) {
     event.preventDefault();
-    setNotice("Your message is ready, but this form is not connected yet. Please use the email link instead.");
+    setNotice("No message was sent. Add a contact email or connect a form service before using this form.");
   }
   return (
     <section id="contact" className="scroll-mt-20 border-t border-border/70 bg-paper/50 py-16 sm:py-20">
@@ -423,7 +423,7 @@ function Contact() {
               <label className="grid gap-2 text-sm font-medium text-ink">Email<input required name="email" type="email" autoComplete="email" placeholder="you@example.com" className="min-h-11 rounded-lg border border-input bg-background/70 px-3 font-normal placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" /></label>
             </div>
             <label className="mt-4 grid gap-2 text-sm font-medium text-ink">Message<textarea required name="message" rows={4} placeholder="What would you like to talk about?" className="resize-y rounded-lg border border-input bg-background/70 px-3 py-2.5 font-normal placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" /></label>
-            <Button type="submit" className="mt-4 min-h-11 rounded-full bg-accent px-5 text-accent-foreground hover:bg-accent/90">Prepare message <Send size={15} aria-hidden="true" /></Button>
+            <Button type="submit" className="mt-4 min-h-11 rounded-full bg-accent px-5 text-accent-foreground hover:bg-accent/90">Send Message <Send size={15} aria-hidden="true" /></Button>
             <p aria-live="polite" role="status" className="mt-3 min-h-5 text-xs leading-5 text-muted-foreground">{notice || "This form is a preview and does not send messages."}</p>
           </form>
         </div>
