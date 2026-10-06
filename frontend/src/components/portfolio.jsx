@@ -8,7 +8,6 @@ import {
   BriefcaseBusiness,
   ChevronLeft,
   ChevronRight,
-  Code2,
   ExternalLink,
   FileText,
   Github,
@@ -137,10 +136,10 @@ function Hero() {
   return (
     <section id="home" className="mx-auto grid max-w-6xl scroll-mt-24 gap-4 px-5 pb-8 pt-9 sm:px-8 sm:pt-14 lg:grid-cols-12">
       <div className="journal-surface rise-in rounded-2xl border border-border p-7 sm:p-9 lg:col-span-7">
-        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">{personal.degree} · Software Development</p>
+        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">{personal.degree}</p>
         <h1 className="mt-5 max-w-[17ch] text-balance text-4xl font-semibold leading-[1.08] text-ink sm:text-5xl lg:text-[3.45rem]">
           Hi, I’m {displayValue(personal.name)}.
-          <span className="mt-2 block text-ink/65">{personal.role}</span>
+          <span className="mt-2 block text-ink/65">Building practical digital solutions through technology and design.</span>
         </h1>
         <p className="mt-5 max-w-[55ch] text-pretty text-base leading-7 text-muted-foreground">{personal.introduction}</p>
         <div className="mt-7 flex flex-wrap gap-3">
@@ -164,11 +163,7 @@ function Hero() {
           <p className="mt-2 max-w-[45ch] text-sm leading-6 text-muted-foreground">Practical builds, considered solutions, and the technical details behind each project.</p>
           <a href="#work" className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline">Browse project entries <ArrowRight size={15} aria-hidden="true" /></a>
         </div>
-        <div className="journal-surface rounded-2xl border border-border p-5">
-          <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Currently focused on</p>
-          <p className="mt-3 text-sm font-medium leading-6 text-ink">{displayValue(personal.currentFocus)}</p>
-        </div>
-        <div className="journal-surface rounded-2xl border border-border p-5">
+        <div className="journal-surface rounded-2xl border border-border p-5 sm:col-span-2">
           <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Based in</p>
           <p className="mt-3 flex items-start gap-2 text-sm font-medium leading-6 text-ink"><MapPin size={16} className="mt-1 shrink-0 text-accent" aria-hidden="true" />{displayValue(personal.location)}</p>
         </div>
@@ -180,8 +175,7 @@ function Hero() {
 function About() {
   const details = [
     [GraduationCap, "Education", personal.education],
-    [Code2, "Current focus", personal.currentFocus],
-    [BookOpen, "Development interests", personal.interests],
+    [BookOpen, "Academic Program", personal.degree],
   ];
   return (
     <section id="about" className="section-space scroll-mt-20 border-t border-border/70">

@@ -1,6 +1,6 @@
-# Balaji M — Software Developer Portfolio
+# Balaji M — Portfolio
 
-A modern, responsive personal developer portfolio showcasing software engineering projects, technical skills, practical experience, and certifications. Built with an editorial "Engineering Notebook" visual aesthetic, smooth animations, and a unified single-server architecture.
+A modern, responsive personal portfolio showcasing technical projects, skills, practical experience, and certifications. Built with an editorial "Engineering Notebook" visual aesthetic, smooth animations, and a unified single-server architecture.
 
 ## Tech Stack
 
