@@ -98,12 +98,12 @@ npm run dev
 ```
 
 Then open your browser at:
-[http://localhost:5000](http://localhost:5000)
+[http://localhost:5002](http://localhost:5002)
 
 During development:
 - Express handles API requests at `/api/*`
 - Vite middleware serves and hot-reloads (HMR) the React frontend at `/*`
-- All traffic runs through **port 5000** with no need for multiple terminals
+- All traffic runs through **port 5002** with no need for multiple terminals
 
 ---
 
@@ -120,7 +120,7 @@ npm start
 ```
 
 Then open:
-[http://localhost:5000](http://localhost:5000)
+[http://localhost:5002](http://localhost:5002)
 
 ---
 
