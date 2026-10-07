@@ -7,8 +7,6 @@ import {
   Award,
   BookOpen,
   BriefcaseBusiness,
-  ChevronLeft,
-  ChevronRight,
   ExternalLink,
   FileText,
   Github,
@@ -153,12 +151,12 @@ function Hero() {
       <div className="grid gap-4 sm:grid-cols-2 lg:col-span-5">
         <div className="journal-surface rounded-2xl border border-border p-6 sm:col-span-2">
           <div className="flex items-center justify-between gap-3">
-            <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">Field notebook</p>
+            <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-muted-foreground">Engineering notebook</p>
             <BookOpen size={17} className="text-accent" aria-hidden="true" />
           </div>
           <p className="mt-3 text-2xl font-semibold text-ink">A record of the work.</p>
           <p className="mt-2 max-w-[45ch] text-sm leading-6 text-muted-foreground">5 practical builds across web, mobile, AI integrations, and data-driven dashboards with considered technical details.</p>
-          <a href="#work" className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline">Browse project entries ({projects.length}) <ArrowRight size={15} aria-hidden="true" /></a>
+          <a href="#work" className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-accent hover:underline">Explore projects ({projects.length}) <ArrowRight size={15} aria-hidden="true" /></a>
         </div>
         <div className="journal-surface rounded-2xl border border-border p-5">
           <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Academic Institution</p>
@@ -177,9 +175,9 @@ function Hero() {
 
 function About() {
   return (
-    <section id="about" className="section-space scroll-mt-20 border-t border-border/70">
+    <section id="about" className="section-space scroll-mt-24 border-t border-border/70">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading eyebrow="A little about me" title="Curious by nature. Practical by design." note="01 — About" />
+        <SectionHeading eyebrow="Curious by nature" title="Curious by nature. Practical by design." note="01 — About" />
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="journal-surface flex flex-col justify-between rounded-2xl border border-border p-7 sm:p-8">
             <div className="space-y-4">
@@ -201,21 +199,26 @@ function About() {
             </div>
           </div>
 
-          <div className="space-y-3">
-            <h3 className="font-mono text-xs uppercase tracking-[0.14em] text-muted-foreground">Education</h3>
-            {personal.education.map((item, index) => (
-              <div key={index} className="journal-surface flex gap-4 rounded-xl border border-border p-5">
-                <GraduationCap size={20} className="mt-0.5 shrink-0 text-accent" aria-hidden="true" />
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-baseline justify-between gap-1">
-                    <h4 className="text-sm font-semibold text-ink">{item.degree}</h4>
-                    <span className="font-mono text-[11px] text-muted-foreground">{item.period}</span>
+          <div className="space-y-4">
+            <div>
+              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">The foundation</p>
+              <h3 className="mt-1 text-xl font-semibold tracking-tight text-ink">The foundation behind the work.</h3>
+            </div>
+            <div className="space-y-3">
+              {personal.education.map((item, index) => (
+                <div key={index} className="journal-surface flex gap-4 rounded-xl border border-border p-5">
+                  <GraduationCap size={20} className="mt-0.5 shrink-0 text-accent" aria-hidden="true" />
+                  <div className="min-w-0 flex-1">
+                    <div className="flex flex-wrap items-baseline justify-between gap-1">
+                      <h4 className="text-sm font-semibold text-ink">{item.degree}</h4>
+                      <span className="font-mono text-[11px] text-muted-foreground">{item.period}</span>
+                    </div>
+                    <p className="mt-1 text-xs text-muted-foreground">{item.institution}</p>
+                    <p className="mt-1.5 font-mono text-xs font-medium text-accent">{item.score}</p>
                   </div>
-                  <p className="mt-1 text-xs text-muted-foreground">{item.institution}</p>
-                  <p className="mt-1.5 font-mono text-xs font-medium text-accent">{item.score}</p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -225,7 +228,7 @@ function About() {
 
 function Skills() {
   return (
-    <section id="skills" className="scroll-mt-20 border-t border-border/70 bg-paper/50 py-12 sm:py-16">
+    <section id="skills" className="scroll-mt-24 border-t border-border/70 bg-paper/50 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading eyebrow="Tools of the trade" title="Technology, in context." note="02 — Skills" />
         <div className="grid gap-x-8 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
@@ -333,117 +336,47 @@ function ProjectLinks({ project }) {
   );
 }
 
-function ProjectDetails({ project }) {
-  return (
-    <>
-      <div className="mt-5 grid gap-5 sm:grid-cols-2">
-        <div><h4 className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">The problem</h4><p className="mt-2 text-sm leading-6 text-ink/85">{project.problem}</p></div>
-        <div><h4 className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">The approach</h4><p className="mt-2 text-sm leading-6 text-ink/85">{project.solution}</p></div>
-      </div>
-      <div className="mt-5"><h4 className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">Key features</h4><ul className="mt-2 flex flex-wrap gap-2">{project.features.map((feature, index) => <li key={`${feature}-${index}`} className="rounded-full bg-paper px-3 py-1.5 text-xs text-ink">{feature}</li>)}</ul></div>
-      <div className="mt-5"><h4 className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted-foreground">Built with</h4><ul className="mt-2 flex flex-wrap gap-2">{project.technologies.map((technology, index) => <li key={`${technology}-${index}`} className="rounded-full border border-border px-3 py-1.5 font-mono text-[11px] text-muted-foreground">{technology}</li>)}</ul></div>
-    </>
-  );
-}
-
-function Notebook({ project, index, setIndex, opened, setOpened }) {
-  const total = projects.length;
-  const previous = () => setIndex((index + total - 1) % total);
-  const next = () => setIndex((index + 1) % total);
-  if (!opened) {
-    return (
-      <div className="journal-surface journal-lines mx-auto max-w-4xl overflow-hidden rounded-2xl border border-border p-8 sm:p-12">
-        <div className="flex min-h-[24rem] flex-col items-center justify-center border border-border/75 bg-surface/70 px-5 py-10 text-center sm:min-h-[27rem]">
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">Engineering Notebook</p>
-          <p className="mt-8 text-sm text-muted-foreground">{personal.name} · {personal.degree}</p>
-          <h3 className="mt-3 text-3xl font-semibold text-ink sm:text-4xl">5 Technical Projects</h3>
-          <p className="mt-3 max-w-[44ch] text-sm leading-6 text-muted-foreground">A working record of systems, web apps, and mobile applications I’ve built with the thinking behind each entry.</p>
-          <Button onClick={() => setOpened(true)} className="mt-8 min-h-11 rounded-full bg-accent px-5 text-accent-foreground hover:bg-accent/90">
-            <BookOpen aria-hidden="true" /> Open notebook <ArrowRight aria-hidden="true" />
-          </Button>
-          <button onClick={() => setOpened(true)} className="mt-4 text-xs text-muted-foreground underline underline-offset-4 hover:text-ink">Or explore Project 01 ({projects[0]?.title.split("—")[0].trim()}) directly</button>
-        </div>
-      </div>
-    );
-  }
-  return (
-    <div className="grid gap-4 lg:grid-cols-12" aria-live="polite">
-      <motion.article key={project.id} initial={{ opacity: 0, x: 10 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.22 }} className="journal-surface journal-lines rounded-2xl border border-border p-5 sm:p-8 lg:col-span-7">
-        <div className="flex flex-wrap items-center justify-between gap-3">
-          <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Project {String(project.id).padStart(2, "0")} · {project.category}</span>
-          <span className="rounded-full bg-accent/10 px-3 py-1 font-mono text-[10px] text-accent">{project.date}</span>
-        </div>
-        <h3 className="mt-4 text-2xl font-semibold leading-tight text-ink sm:text-3xl">{project.title}</h3>
-        <p className="mt-2 max-w-[60ch] text-sm leading-6 text-muted-foreground">{project.shortDescription}</p>
-        <div className="mt-6"><ProjectPreview project={project} /></div>
-        <ProjectDetails project={project} />
-        <div className="mt-6"><ProjectLinks project={project} /></div>
-      </motion.article>
-      <aside className="journal-surface rounded-2xl border border-border p-5 sm:p-7 lg:col-span-5">
-        <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-accent">Notebook index</p>
-        <h4 className="mt-3 text-xl font-semibold text-ink">Build Log Entries</h4>
-        <p className="mt-2 text-sm leading-6 text-muted-foreground">Each entry keeps the problem, approach, key features, and tech stack together.</p>
-        <ol className="mt-6 divide-y divide-border border-y border-border">
-          {projects.map((entry, entryIndex) => (
-            <li key={entry.id}>
-              <button onClick={() => setIndex(entryIndex)} aria-current={index === entryIndex ? "true" : undefined} className={`flex min-h-14 w-full items-center justify-between gap-3 text-left text-sm transition-colors ${index === entryIndex ? "font-medium text-accent" : "text-ink hover:text-accent"}`}>
-                <span className="font-mono text-[11px] text-muted-foreground">{String(entry.id).padStart(2, "0")}</span>
-                <span className="min-w-0 flex-1 truncate font-medium">{entry.title.split("—")[0].trim()}</span>
-                {index === entryIndex ? <ArrowRight size={15} aria-hidden="true" /> : null}
-              </button>
-            </li>
-          ))}
-        </ol>
-        <div className="mt-6 flex items-center justify-between gap-2">
-          <Button variant="outline" className="min-h-10 rounded-full border-border bg-surface px-3 text-ink" onClick={previous} disabled={total <= 1} aria-label="Previous project"><ChevronLeft aria-hidden="true" /> Previous</Button>
-          <span className="shrink-0 font-mono text-xs text-muted-foreground">{String(index + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}</span>
-          <Button variant="outline" className="min-h-10 rounded-full border-border bg-surface px-3 text-ink" onClick={next} disabled={total <= 1} aria-label="Next project">Next <ChevronRight aria-hidden="true" /></Button>
-        </div>
-        <button onClick={() => setOpened(false)} className="mt-5 text-xs text-muted-foreground underline underline-offset-4 hover:text-ink">Close the notebook cover</button>
-      </aside>
-    </div>
-  );
-}
-
 function ProjectCard({ project, index }) {
   return (
-    <article className="journal-surface overflow-hidden rounded-2xl border border-border">
-      <div className="p-4 pb-0"><ProjectPreview project={project} /></div>
-      <div className="p-5 sm:p-6">
-        <div className="flex items-center justify-between gap-2">
-          <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">Project {String(index + 1).padStart(2, "0")} · {project.category}</p>
-          <span className="font-mono text-[10px] text-muted-foreground">{project.date}</span>
+    <article className="journal-surface flex flex-col justify-between overflow-hidden rounded-2xl border border-border">
+      <div>
+        <div className="p-4 pb-0"><ProjectPreview project={project} /></div>
+        <div className="p-5 sm:p-6 pb-2">
+          <div className="flex items-center justify-between gap-2">
+            <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-accent">Project {String(index + 1).padStart(2, "0")} · {project.category}</p>
+            <span className="font-mono text-[10px] text-muted-foreground">{project.date}</span>
+          </div>
+          <h3 className="mt-2 text-xl font-semibold text-ink">{project.title}</h3>
+          <p className="mt-2 text-sm leading-6 text-muted-foreground">{project.shortDescription}</p>
+          <ul className="mt-4 flex flex-wrap gap-2" aria-label={`Technologies used in ${project.title}`}>
+            {project.technologies.map((technology, itemIndex) => (
+              <li key={`${technology}-${itemIndex}`} className="rounded-full border border-border px-2.5 py-1 font-mono text-[10px] text-muted-foreground">
+                {technology}
+              </li>
+            ))}
+          </ul>
         </div>
-        <h3 className="mt-2 text-xl font-semibold text-ink">{project.title}</h3>
-        <p className="mt-2 text-sm leading-6 text-muted-foreground">{project.shortDescription}</p>
-        <ul className="mt-4 flex flex-wrap gap-2">{project.technologies.slice(0, 5).map((technology, itemIndex) => <li key={`${technology}-${itemIndex}`} className="rounded-full border border-border px-2.5 py-1 font-mono text-[10px] text-muted-foreground">{technology}</li>)}</ul>
-        <div className="mt-5"><ProjectLinks project={project} /></div>
+      </div>
+      <div className="p-5 sm:p-6 pt-2">
+        <ProjectLinks project={project} />
       </div>
     </article>
   );
 }
 
 function Projects() {
-  const [mode, setMode] = useState("notebook");
-  const [index, setIndex] = useState(0);
-  const [opened, setOpened] = useState(false);
-  const selectedProject = projects[index] || projects[0];
   return (
-    <section id="work" className="section-space scroll-mt-20 border-t border-border/70">
+    <section id="work" className="section-space scroll-mt-24 border-t border-border/70">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading eyebrow="Digital developer notebook" title="Entries from the build log." note="03 — Projects" />
-        <div className="mb-7 flex flex-wrap items-center justify-between gap-4">
-          <p className="max-w-[55ch] text-sm leading-6 text-muted-foreground">Explore an engineering notebook entry, or switch to a quick-scan project list.</p>
-          <div role="group" aria-label="Project display mode" className="inline-flex rounded-full border border-border bg-surface p-1">
-            <Button variant="ghost" aria-pressed={mode === "notebook"} onClick={() => setMode("notebook")} className={`min-h-9 rounded-full px-4 text-xs ${mode === "notebook" ? "bg-accent text-accent-foreground hover:bg-accent/90 hover:text-accent-foreground" : "text-muted-foreground"}`}>Interactive</Button>
-            <Button variant="ghost" aria-pressed={mode === "classic"} onClick={() => setMode("classic")} className={`min-h-9 rounded-full px-4 text-xs ${mode === "classic" ? "bg-accent text-accent-foreground hover:bg-accent/90 hover:text-accent-foreground" : "text-muted-foreground"}`}>Classic</Button>
-          </div>
+        <SectionHeading eyebrow="Engineering notebook" title="What I’ve built." note="03 — Projects" />
+        <p className="mb-8 max-w-[65ch] text-sm leading-6 text-muted-foreground sm:text-base">
+          A collection of practical projects across mobile applications, web platforms, AI integrations, and data-driven systems.
+        </p>
+        <div className="grid gap-6 md:grid-cols-2">
+          {projects.map((project, projectIndex) => (
+            <ProjectCard key={project.id} project={project} index={projectIndex} />
+          ))}
         </div>
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div key={`${mode}-${mode === "notebook" ? opened ? "open" : "cover" : "list"}`} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -5 }} transition={{ duration: 0.2 }}>
-            {mode === "notebook" ? <Notebook project={selectedProject} index={index} setIndex={setIndex} opened={opened} setOpened={setOpened} /> : <div className="grid gap-5 md:grid-cols-2">{projects.map((project, projectIndex) => <ProjectCard key={project.id} project={project} index={projectIndex} />)}</div>}
-          </motion.div>
-        </AnimatePresence>
       </div>
     </section>
   );
@@ -451,9 +384,9 @@ function Projects() {
 
 function Experience() {
   return (
-    <section id="experience" className="scroll-mt-20 border-t border-border/70 bg-paper/50 py-12 sm:py-16">
+    <section id="experience" className="scroll-mt-24 border-t border-border/70 bg-paper/50 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading eyebrow="Experience & internships" title="Learning by doing." note="04 — Experience" />
+        <SectionHeading eyebrow="Beyond the classroom" title="Learning through real work." note="04 — Experience" />
         <div className="grid gap-4">
           {experience.map((item, index) => (
             <article key={`${item.company}-${index}`} className="journal-surface grid gap-4 rounded-2xl border border-border p-6 sm:grid-cols-[1fr_auto] sm:items-start sm:p-7">
@@ -475,9 +408,9 @@ function Experience() {
 
 function Certifications() {
   return (
-    <section id="certifications" className="section-space scroll-mt-20 border-t border-border/70">
+    <section id="certifications" className="section-space scroll-mt-24 border-t border-border/70">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading eyebrow="Recognition & credentials" title="Certifications." note="05 — Certifications" />
+        <SectionHeading eyebrow="Continuous learning" title="What I’ve learned along the way." note="05 — Certifications" />
         <div className="grid gap-4 md:grid-cols-2">
           {certifications.map((item, index) => (
             <article key={`${item.title}-${index}`} className="journal-surface flex gap-4 rounded-xl border border-border p-5 sm:p-6">
@@ -497,9 +430,9 @@ function Certifications() {
 
 function Achievements() {
   return (
-    <section id="achievements" className="scroll-mt-20 border-t border-border/70 bg-paper/50 py-12 sm:py-16">
+    <section id="achievements" className="scroll-mt-24 border-t border-border/70 bg-paper/50 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading eyebrow="Technical events & hackathons" title="Achievements & Events." note="06 — Achievements" />
+        <SectionHeading eyebrow="Milestones & participation" title="Where I put ideas to the test." note="06 — Achievements" />
         <div className="grid gap-4 md:grid-cols-2">
           {achievements.map((item, index) => (
             <article key={`${item.title}-${index}`} className="journal-surface flex gap-4 rounded-xl border border-border p-5 sm:p-6">
@@ -534,9 +467,9 @@ function Contact() {
   }
 
   return (
-    <section id="contact" className="section-space scroll-mt-20 border-t border-border/70">
+    <section id="contact" className="section-space scroll-mt-24 border-t border-border/70">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading eyebrow="Get in touch" title="Let’s Connect." note="07 — Contact" />
+        <SectionHeading eyebrow="Open to conversation" title="Let’s start a conversation." note="07 — Contact" />
         <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="journal-surface rounded-2xl border border-border p-7 sm:p-8">
             <h3 className="text-xl font-semibold text-ink">Have a project in mind?</h3>
