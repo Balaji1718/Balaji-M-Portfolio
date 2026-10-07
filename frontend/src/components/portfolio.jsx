@@ -21,6 +21,7 @@ import {
   Phone,
   Send,
   X,
+  ZoomIn,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import certifications, { achievements } from "@/data/certifications";
@@ -247,14 +248,67 @@ function Skills() {
 }
 
 function ProjectPreview({ project }) {
+  const [isZoomed, setIsZoomed] = useState(false);
+
   if (project.image) {
     return (
-      <img
-        src={project.image}
-        alt={project.imageAlt || project.title}
-        loading="lazy"
-        className="aspect-[16/9] w-full rounded-xl border border-border bg-surface object-cover shadow-sm transition-transform duration-300 hover:scale-[1.01]"
-      />
+      <>
+        <div
+          onClick={() => setIsZoomed(true)}
+          className="group relative cursor-zoom-in overflow-hidden rounded-xl border border-border bg-paper/60 p-1.5 transition-all duration-200 hover:border-accent/40 sm:p-2"
+        >
+          <img
+            src={project.image}
+            alt={project.imageAlt || project.title}
+            loading="lazy"
+            className="block h-auto max-h-[500px] w-full rounded-lg object-contain shadow-sm transition-transform duration-300 group-hover:scale-[1.01]"
+          />
+          <div className="absolute right-3 top-3 flex items-center gap-1.5 rounded-full border border-border/80 bg-surface/90 px-2.5 py-1 text-[11px] font-mono font-medium text-ink opacity-0 shadow-sm backdrop-blur transition-opacity duration-200 group-hover:opacity-100">
+            <ZoomIn size={13} className="text-accent" aria-hidden="true" />
+            <span>Click to enlarge</span>
+          </div>
+        </div>
+
+        <AnimatePresence>
+          {isZoomed && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsZoomed(false)}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-ink/80 p-4 backdrop-blur-md sm:p-8"
+              role="dialog"
+              aria-modal="true"
+              aria-label={`Expanded view of ${project.title}`}
+            >
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="relative max-h-[92vh] max-w-6xl overflow-hidden rounded-2xl border border-border/50 bg-surface p-2 shadow-2xl"
+              >
+                <div className="flex items-center justify-between border-b border-border/70 px-4 py-2.5">
+                  <span className="font-mono text-xs text-muted-foreground">
+                    {project.title}
+                  </span>
+                  <button
+                    onClick={() => setIsZoomed(false)}
+                    className="grid size-8 place-items-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-ink"
+                    aria-label="Close enlarged image"
+                  >
+                    <X size={18} aria-hidden="true" />
+                  </button>
+                </div>
+                <div className="flex items-center justify-center p-2">
+                  <img
+                    src={project.image}
+                    alt={project.imageAlt || project.title}
+                    className="max-h-[80vh] w-auto max-w-full rounded-lg object-contain"
+                  />
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </>
     );
   }
   return (
