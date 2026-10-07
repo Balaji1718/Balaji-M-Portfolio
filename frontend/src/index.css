@@ -66,7 +66,7 @@
 .journal-lines {
   background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 2.05rem, color-mix(in oklab, var(--ink) 6%, transparent) 2.05rem, color-mix(in oklab, var(--ink) 6%, transparent) calc(2.05rem + 1px));
 }
-.section-space { padding-block: clamp(4.5rem, 8vw, 7.5rem); }
+.section-space { padding-block: clamp(3.25rem, 5.5vw, 5.25rem); }
 .rise-in { animation: rise-in 520ms cubic-bezier(0.22, 0.61, 0.36, 1) both; }
 @keyframes rise-in {
   from { opacity: 0; transform: translateY(10px); }
