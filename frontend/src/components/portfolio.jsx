@@ -226,21 +226,74 @@ function About() {
   );
 }
 
+const skillProjectMap = {
+  Java: ["FindBack"],
+  JavaScript: ["BreatheSmart"],
+  "React.js": ["BreatheSmart", "SpendPilot", "SkillBridge", "HealthGuardian AI"],
+  "Tailwind CSS": ["SpendPilot", "SkillBridge"],
+  Vite: ["SpendPilot", "SkillBridge"],
+  "Node.js": ["BreatheSmart"],
+  "Express.js": ["BreatheSmart", "SpendPilot", "SkillBridge", "HealthGuardian AI"],
+  Firebase: ["FindBack", "SpendPilot", "SkillBridge", "HealthGuardian AI"],
+  MongoDB: ["BreatheSmart"],
+  PostgreSQL: ["BreatheSmart"],
+  "Groq API": ["FindBack", "BreatheSmart", "SpendPilot", "SkillBridge"],
+  "OpenAQ API": ["BreatheSmart"],
+  "WAQI API": ["BreatheSmart"],
+  "OpenWeather API": ["BreatheSmart"],
+  "NVIDIA AI APIs": ["FindBack"],
+  OpenRouter: ["FindBack"],
+  Cohere: ["FindBack"],
+  "Android Studio": ["FindBack"],
+  Git: ["FindBack", "BreatheSmart", "SpendPilot", "SkillBridge", "HealthGuardian AI"],
+  GitHub: ["FindBack", "BreatheSmart", "SpendPilot", "SkillBridge", "HealthGuardian AI"],
+};
+
 function Skills() {
   return (
     <section id="skills" className="scroll-mt-24 border-t border-border/70 bg-paper/50 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
         <SectionHeading eyebrow="Tools of the trade" title="Technology, in context." note="02 — Skills" />
+        <div className="mb-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs">
+          <span className="inline-flex items-center gap-1.5 font-mono text-muted-foreground">
+            <span className="size-2 rounded-full bg-accent" aria-hidden="true" />
+            <span className="font-semibold text-ink">Highlighted with accent</span> — demonstrated in engineering projects below
+          </span>
+          <span className="inline-flex items-center gap-1.5 font-mono text-muted-foreground">
+            <span className="size-2 rounded-full bg-border" aria-hidden="true" />
+            <span>Foundational tools & technologies</span>
+          </span>
+        </div>
         <div className="grid gap-x-8 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
           {skills.map((group) => (
             <div key={group.category} className="border-t border-border py-5">
               <h3 className="font-mono text-xs uppercase tracking-[0.11em] text-muted-foreground">{group.category}</h3>
               <ul className="mt-3 flex flex-wrap gap-2" aria-label={`${group.category} skills`}>
-                {group.items.map((skill, index) => (
-                  <li key={`${skill}-${index}`} className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-ink sm:text-sm">
-                    {skill}
-                  </li>
-                ))}
+                {group.items.map((skill, index) => {
+                  const projectsUsing = skillProjectMap[skill];
+                  const isHighlighted = Boolean(projectsUsing);
+                  return (
+                    <li key={`${skill}-${index}`}>
+                      {isHighlighted ? (
+                        <a
+                          href="#work"
+                          title={`Demonstrated in: ${projectsUsing.join(", ")} (Click to view projects)`}
+                          className="group inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-3 py-1.5 text-xs font-semibold text-ink transition-all hover:border-accent hover:bg-accent/20 hover:shadow-xs sm:text-sm"
+                        >
+                          <span className="size-1.5 rounded-full bg-accent transition-transform group-hover:scale-125" aria-hidden="true" />
+                          <span>{skill}</span>
+                        </a>
+                      ) : (
+                        <span
+                          title="Foundational technical skill"
+                          className="inline-block rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted-foreground sm:text-sm"
+                        >
+                          {skill}
+                        </span>
+                      )}
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}
@@ -350,7 +403,10 @@ function ProjectCard({ project, index }) {
           <p className="mt-2 text-sm leading-6 text-muted-foreground">{project.shortDescription}</p>
           <ul className="mt-4 flex flex-wrap gap-2" aria-label={`Technologies used in ${project.title}`}>
             {project.technologies.map((technology, itemIndex) => (
-              <li key={`${technology}-${itemIndex}`} className="rounded-full border border-border px-2.5 py-1 font-mono text-[10px] text-muted-foreground">
+              <li
+                key={`${technology}-${itemIndex}`}
+                className="rounded-full border border-accent/25 bg-accent/5 px-2.5 py-1 font-mono text-[10px] font-medium text-ink transition-colors hover:border-accent/50"
+              >
                 {technology}
               </li>
             ))}
