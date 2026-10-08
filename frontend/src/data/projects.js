@@ -189,7 +189,7 @@ const projects = [
     image: "/projects/healthguardian-ai.png",
     imageAlt: "HealthGuardian AI interactive 3D anatomical visualization and analysis",
     github: "https://github.com/Balaji1718/Healthguardian-AI",
-    demo: "",
+    demo: "https://healthguardian-ai-cyan.vercel.app/",
   },
 ];
 
