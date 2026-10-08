@@ -79,7 +79,7 @@ const projects = [
     image: "/projects/breathsmart.png",
     imageAlt: "BreatheSmart environmental air quality analytics dashboard",
     github: "https://github.com/Balaji1718/AirQuality_Analytics",
-    demo: "",
+    demo: "https://breathesmart.onrender.com",
   },
   {
     id: 3,
@@ -114,7 +114,7 @@ const projects = [
     image: "/projects/spendpilot.png",
     imageAlt: "SpendPilot personal finance and expense analytics dashboard",
     github: "https://github.com/Balaji1718/SpendPilot",
-    demo: "https://spendpilot-dc613.web.app",
+    demo: "https://spendpilot-2ron.onrender.com",
   },
   {
     id: 4,
@@ -150,7 +150,7 @@ const projects = [
     image: "/projects/skillbridge.png",
     imageAlt: "SkillBridge student skill barter marketplace platform",
     github: "https://github.com/Balaji1718/SkillBridge",
-    demo: "",
+    demo: "https://skillbridge-qhl4.onrender.com",
   },
   {
     id: 5,
@@ -189,7 +189,7 @@ const projects = [
     image: "/projects/healthguardian-ai.png",
     imageAlt: "HealthGuardian AI interactive 3D anatomical visualization and analysis",
     github: "https://github.com/Balaji1718/Healthguardian-AI",
-    demo: "https://healthguardian-ai-cyan.vercel.app/",
+    demo: "https://healthguardian-ai-xg99.onrender.com",
   },
 ];
 
