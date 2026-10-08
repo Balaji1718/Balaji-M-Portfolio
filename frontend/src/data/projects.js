@@ -39,7 +39,7 @@ const projects = [
     image: "/projects/findback.jpg",
     imageAlt: "FindBack campus lost and found mobile application interface",
     github: "https://github.com/Balaji1718/FindBack",
-    demo: "",
+    demo: "https://findback-official.vercel.app/",
   },
   {
     id: 2,
