@@ -165,7 +165,16 @@ function Hero() {
         </div>
         <div className="journal-surface rounded-2xl border border-border p-5">
           <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted-foreground">Based in</p>
-          <p className="mt-2 flex items-start gap-1.5 text-sm font-medium leading-snug text-ink"><MapPin size={16} className="mt-0.5 shrink-0 text-accent" aria-hidden="true" />{personal.location}</p>
+          <a
+            href={personal.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(personal.location)}`}
+            target="_blank"
+            rel="noreferrer"
+            title={`View ${personal.location} on Google Maps`}
+            className="group mt-2 flex items-start gap-1.5 text-sm font-medium leading-snug text-ink transition-colors hover:text-accent"
+          >
+            <MapPin size={16} className="mt-0.5 shrink-0 text-accent transition-transform group-hover:scale-110" aria-hidden="true" />
+            <span className="group-hover:underline underline-offset-2">{personal.location}</span>
+          </a>
           <p className="mt-1 font-mono text-xs text-muted-foreground">Tamil Nadu, India</p>
         </div>
       </div>
@@ -536,7 +545,16 @@ function Contact() {
               <SocialLink href={personal.github} label="GitHub" icon={Github} />
               <SocialLink href={personal.linkedin} label="LinkedIn" icon={Linkedin} />
             </div>
-            <p className="mt-6 flex items-center gap-2 text-sm text-muted-foreground"><MapPin size={16} className="text-accent" aria-hidden="true" />{personal.location}</p>
+            <a
+              href={personal.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(personal.location)}`}
+              target="_blank"
+              rel="noreferrer"
+              title={`View ${personal.location} on Google Maps`}
+              className="group mt-6 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-accent"
+            >
+              <MapPin size={16} className="text-accent transition-transform group-hover:scale-110" aria-hidden="true" />
+              <span className="group-hover:underline underline-offset-2">{personal.location}</span>
+            </a>
           </div>
           <form onSubmit={handleSubmit} className="journal-surface rounded-2xl border border-border p-6 sm:p-8">
             <div className="grid gap-4 sm:grid-cols-2">

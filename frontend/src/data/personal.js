@@ -5,6 +5,7 @@ const personal = {
   college: "Excel Engineering College, Tamil Nadu, India",
   cgpa: "9/10",
   location: "Theni, Tamil Nadu, India",
+  mapsUrl: "https://www.google.com/maps/search/?api=1&query=Theni%2C+Tamil+Nadu%2C+India",
   email: "balajimurugan1708@gmail.com",
   phone: "+91 63743 80331",
   github: "https://github.com/Balaji1718",
