@@ -39,14 +39,19 @@ const navigation = [
   ["Contact", "contact"],
 ];
 
-function SectionHeading({ eyebrow, title, note }) {
+function SectionHeading({ section, eyebrow, title }) {
   return (
-    <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
-      <div>
-        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">{eyebrow}</p>
-        <h2 className="mt-2 max-w-[42ch] text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">{title}</h2>
-      </div>
-      {note ? <p className="font-mono text-xs text-muted-foreground">{note}</p> : null}
+    <div className="mb-8">
+      <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">
+        <span className="font-semibold">{section}</span>
+        {eyebrow ? (
+          <>
+            <span className="mx-2 font-normal text-muted-foreground/40">·</span>
+            <span className="text-muted-foreground">{eyebrow}</span>
+          </>
+        ) : null}
+      </p>
+      <h2 className="mt-2 max-w-[42ch] text-3xl font-semibold leading-tight tracking-tight text-ink sm:text-4xl">{title}</h2>
     </div>
   );
 }
@@ -129,8 +134,7 @@ function Hero() {
   return (
     <section id="home" className="mx-auto grid max-w-6xl scroll-mt-24 gap-4 px-5 pb-8 pt-8 sm:px-8 sm:pt-12 lg:grid-cols-12">
       <div className="journal-surface rise-in rounded-2xl border border-border p-7 sm:p-9 lg:col-span-7">
-        <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">{personal.degree}</p>
-        <h1 className="mt-4 max-w-[19ch] text-balance text-4xl font-semibold leading-[1.1] text-ink sm:text-5xl lg:text-[3.25rem]">
+        <h1 className="max-w-[19ch] text-balance text-4xl font-semibold leading-[1.1] text-ink sm:text-5xl lg:text-[3.25rem]">
           Hi, I’m {personal.name}.
           <span className="mt-2.5 block text-xl font-normal leading-snug text-ink/75 sm:text-2xl">
             {personal.supportingDescription}
@@ -186,7 +190,7 @@ function About() {
   return (
     <section id="about" className="section-space scroll-mt-24 border-t border-border/70">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading eyebrow="Curious by nature" title="Curious by nature. Practical by design." note="01 — About" />
+        <SectionHeading section="01 — About" eyebrow="Curious by nature" title="Curious by nature. Practical by design." />
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
           <div className="journal-surface flex flex-col justify-between rounded-2xl border border-border p-7 sm:p-8">
             <div className="space-y-4">
@@ -210,7 +214,11 @@ function About() {
 
           <div className="space-y-4">
             <div>
-              <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-accent">The foundation</p>
+              <p className="font-mono text-xs uppercase tracking-[0.16em] text-accent">
+                <span className="font-semibold">Education</span>
+                <span className="mx-2 font-normal text-muted-foreground/40">·</span>
+                <span className="text-muted-foreground">The Foundation</span>
+              </p>
               <h3 className="mt-1 text-xl font-semibold tracking-tight text-ink">The foundation behind the work.</h3>
             </div>
             <div className="space-y-3">
@@ -235,74 +243,24 @@ function About() {
   );
 }
 
-const skillProjectMap = {
-  Java: ["FindBack"],
-  JavaScript: ["BreatheSmart"],
-  "React.js": ["BreatheSmart", "SpendPilot", "SkillBridge", "HealthGuardian AI"],
-  "Tailwind CSS": ["SpendPilot", "SkillBridge"],
-  Vite: ["SpendPilot", "SkillBridge"],
-  "Node.js": ["BreatheSmart"],
-  "Express.js": ["BreatheSmart", "SpendPilot", "SkillBridge", "HealthGuardian AI"],
-  Firebase: ["FindBack", "SpendPilot", "SkillBridge", "HealthGuardian AI"],
-  MongoDB: ["BreatheSmart"],
-  PostgreSQL: ["BreatheSmart"],
-  "Groq API": ["FindBack", "BreatheSmart", "SpendPilot", "SkillBridge"],
-  "OpenAQ API": ["BreatheSmart"],
-  "WAQI API": ["BreatheSmart"],
-  "OpenWeather API": ["BreatheSmart"],
-  "NVIDIA AI APIs": ["FindBack"],
-  OpenRouter: ["FindBack"],
-  Cohere: ["FindBack"],
-  "Android Studio": ["FindBack"],
-  Git: ["FindBack", "BreatheSmart", "SpendPilot", "SkillBridge", "HealthGuardian AI"],
-  GitHub: ["FindBack", "BreatheSmart", "SpendPilot", "SkillBridge", "HealthGuardian AI"],
-};
-
 function Skills() {
   return (
     <section id="skills" className="scroll-mt-24 border-t border-border/70 bg-paper/50 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading eyebrow="Tools of the trade" title="Technology, in context." note="02 — Skills" />
-        <div className="mb-6 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs">
-          <span className="inline-flex items-center gap-1.5 font-mono text-muted-foreground">
-            <span className="size-2 rounded-full bg-accent" aria-hidden="true" />
-            <span className="font-semibold text-ink">Highlighted with accent</span> — demonstrated in engineering projects below
-          </span>
-          <span className="inline-flex items-center gap-1.5 font-mono text-muted-foreground">
-            <span className="size-2 rounded-full bg-border" aria-hidden="true" />
-            <span>Foundational tools & technologies</span>
-          </span>
-        </div>
+        <SectionHeading section="02 — Skills" eyebrow="Tools of the trade" title="Technology, in context." />
         <div className="grid gap-x-8 gap-y-2 sm:grid-cols-2 lg:grid-cols-3">
           {skills.map((group) => (
             <div key={group.category} className="border-t border-border py-5">
               <h3 className="font-mono text-xs uppercase tracking-[0.11em] text-muted-foreground">{group.category}</h3>
               <ul className="mt-3 flex flex-wrap gap-2" aria-label={`${group.category} skills`}>
-                {group.items.map((skill, index) => {
-                  const projectsUsing = skillProjectMap[skill];
-                  const isHighlighted = Boolean(projectsUsing);
-                  return (
-                    <li key={`${skill}-${index}`}>
-                      {isHighlighted ? (
-                        <a
-                          href="#work"
-                          title={`Demonstrated in: ${projectsUsing.join(", ")} (Click to view projects)`}
-                          className="group inline-flex items-center gap-1.5 rounded-full border border-accent/40 bg-accent/10 px-3 py-1.5 text-xs font-semibold text-ink transition-all hover:border-accent hover:bg-accent/20 hover:shadow-xs sm:text-sm"
-                        >
-                          <span className="size-1.5 rounded-full bg-accent transition-transform group-hover:scale-125" aria-hidden="true" />
-                          <span>{skill}</span>
-                        </a>
-                      ) : (
-                        <span
-                          title="Foundational technical skill"
-                          className="inline-block rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted-foreground sm:text-sm"
-                        >
-                          {skill}
-                        </span>
-                      )}
-                    </li>
-                  );
-                })}
+                {group.items.map((skill, index) => (
+                  <li
+                    key={`${skill}-${index}`}
+                    className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-ink transition-colors hover:border-accent/40 sm:text-sm"
+                  >
+                    {skill}
+                  </li>
+                ))}
               </ul>
             </div>
           ))}
@@ -414,7 +372,7 @@ function ProjectCard({ project, index }) {
             {project.technologies.map((technology, itemIndex) => (
               <li
                 key={`${technology}-${itemIndex}`}
-                className="rounded-full border border-accent/25 bg-accent/5 px-2.5 py-1 font-mono text-[10px] font-medium text-ink transition-colors hover:border-accent/50"
+                className="rounded-full border border-accent/40 bg-accent/10 px-2.5 py-1 font-mono text-[10px] font-semibold text-accent transition-colors hover:border-accent hover:bg-accent/20"
               >
                 {technology}
               </li>
@@ -433,7 +391,7 @@ function Projects() {
   return (
     <section id="work" className="section-space scroll-mt-24 border-t border-border/70">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading eyebrow="Engineering notebook" title="What I’ve built." note="03 — Projects" />
+        <SectionHeading section="03 — Projects" eyebrow="Engineering notebook" title="What I’ve built." />
         <p className="mb-8 max-w-[65ch] text-sm leading-6 text-muted-foreground sm:text-base">
           A collection of practical projects across mobile applications, web platforms, AI integrations, and data-driven systems.
         </p>
@@ -451,7 +409,7 @@ function Experience() {
   return (
     <section id="experience" className="scroll-mt-24 border-t border-border/70 bg-paper/50 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading eyebrow="Beyond the classroom" title="Learning through real work." note="04 — Experience" />
+        <SectionHeading section="04 — Experience" eyebrow="Beyond the classroom" title="Learning through real work." />
         <div className="grid gap-4">
           {experience.map((item, index) => (
             <article key={`${item.company}-${index}`} className="journal-surface grid gap-4 rounded-2xl border border-border p-6 sm:grid-cols-[1fr_auto] sm:items-start sm:p-7">
@@ -475,7 +433,7 @@ function Certifications() {
   return (
     <section id="certifications" className="section-space scroll-mt-24 border-t border-border/70">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading eyebrow="Continuous learning" title="What I’ve learned along the way." note="05 — Certifications" />
+        <SectionHeading section="05 — Certifications" eyebrow="Continuous learning" title="What I’ve learned along the way." />
         <div className="grid gap-4 md:grid-cols-2">
           {certifications.map((item, index) => (
             <article key={`${item.title}-${index}`} className="journal-surface flex gap-4 rounded-xl border border-border p-5 sm:p-6">
@@ -497,7 +455,7 @@ function Achievements() {
   return (
     <section id="achievements" className="scroll-mt-24 border-t border-border/70 bg-paper/50 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading eyebrow="Milestones & participation" title="Where I put ideas to the test." note="06 — Achievements" />
+        <SectionHeading section="06 — Achievements" eyebrow="Milestones & participation" title="Where I put ideas to the test." />
         <div className="grid gap-4 md:grid-cols-2">
           {achievements.map((item, index) => (
             <article key={`${item.title}-${index}`} className="journal-surface flex gap-4 rounded-xl border border-border p-5 sm:p-6">
@@ -517,24 +475,57 @@ function Achievements() {
 }
 
 function Contact() {
-  const [notice, setNotice] = useState("");
+  const [status, setStatus] = useState({ state: "idle", message: "" });
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const name = formData.get("name") || "";
-    const email = formData.get("email") || "";
-    const message = formData.get("message") || "";
-    const subject = encodeURIComponent(`Portfolio Inquiry from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
-    window.location.href = `mailto:${personal.email}?subject=${subject}&body=${body}`;
-    setNotice("Opening your email client to send this message directly...");
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const name = (formData.get("name") || "").toString().trim();
+    const email = (formData.get("email") || "").toString().trim();
+    const message = (formData.get("message") || "").toString().trim();
+
+    if (!name || !email || !message) {
+      setStatus({ state: "error", message: "Please fill in your name, email, and message." });
+      return;
+    }
+
+    setStatus({ state: "loading", message: "Sending your message..." });
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, message }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setStatus({
+          state: "success",
+          message: "Thank you! Your message has been sent directly to Balaji.",
+        });
+        form.reset();
+      } else {
+        setStatus({
+          state: "error",
+          message: data.error || "Failed to send message. Please try again or email directly.",
+        });
+      }
+    } catch (err) {
+      console.error("Contact form submission error:", err);
+      setStatus({
+        state: "error",
+        message: "Network error. Please try again or email directly at balajimurugan1708@gmail.com.",
+      });
+    }
   }
 
   return (
     <section id="contact" className="section-space scroll-mt-24 border-t border-border/70">
       <div className="mx-auto max-w-6xl px-5 sm:px-8">
-        <SectionHeading eyebrow="Open to conversation" title="Let’s start a conversation." note="07 — Contact" />
+        <SectionHeading section="07 — Contact" eyebrow="Open to conversation" title="Let’s start a conversation." />
         <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="journal-surface rounded-2xl border border-border p-7 sm:p-8">
             <h3 className="text-xl font-semibold text-ink">Have a project in mind?</h3>
@@ -558,12 +549,47 @@ function Contact() {
           </div>
           <form onSubmit={handleSubmit} className="journal-surface rounded-2xl border border-border p-6 sm:p-8">
             <div className="grid gap-4 sm:grid-cols-2">
-              <label className="grid gap-2 text-sm font-medium text-ink">Name<input required name="name" autoComplete="name" placeholder="Your name" className="min-h-11 rounded-lg border border-input bg-background/70 px-3 font-normal placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" /></label>
-              <label className="grid gap-2 text-sm font-medium text-ink">Email<input required name="email" type="email" autoComplete="email" placeholder="you@example.com" className="min-h-11 rounded-lg border border-input bg-background/70 px-3 font-normal placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" /></label>
+              <label className="grid gap-2 text-sm font-medium text-ink">
+                Name
+                <input required name="name" autoComplete="name" placeholder="Your name" className="min-h-11 rounded-lg border border-input bg-background/70 px-3 font-normal placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+              </label>
+              <label className="grid gap-2 text-sm font-medium text-ink">
+                Email
+                <input required name="email" type="email" autoComplete="email" placeholder="you@example.com" className="min-h-11 rounded-lg border border-input bg-background/70 px-3 font-normal placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+              </label>
             </div>
-            <label className="mt-4 grid gap-2 text-sm font-medium text-ink">Message<textarea required name="message" rows={4} placeholder="What would you like to talk about?" className="resize-y rounded-lg border border-input bg-background/70 px-3 py-2.5 font-normal placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" /></label>
-            <Button type="submit" className="mt-4 min-h-11 rounded-full bg-accent px-5 text-accent-foreground hover:bg-accent/90">Send Message <Send size={15} aria-hidden="true" /></Button>
-            <p aria-live="polite" role="status" className="mt-3 min-h-5 text-xs leading-5 text-muted-foreground">{notice || "Clicking send opens your email app with the message addressed to balajimurugan1708@gmail.com."}</p>
+            <label className="mt-4 grid gap-2 text-sm font-medium text-ink">
+              Message
+              <textarea required name="message" rows={4} placeholder="What would you like to talk about?" className="resize-y rounded-lg border border-input bg-background/70 px-3 py-2.5 font-normal placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+            </label>
+            <Button
+              type="submit"
+              disabled={status.state === "loading"}
+              className="mt-4 min-h-11 rounded-full bg-accent px-6 text-accent-foreground hover:bg-accent/90 disabled:opacity-60"
+            >
+              {status.state === "loading" ? "Sending..." : "Send Message"}
+              <Send size={15} aria-hidden="true" />
+            </Button>
+            {status.state === "success" && (
+              <p aria-live="polite" role="status" className="mt-3 text-xs font-medium text-emerald-600">
+                ✓ {status.message}
+              </p>
+            )}
+            {status.state === "error" && (
+              <p aria-live="polite" role="alert" className="mt-3 text-xs font-medium text-red-600">
+                ⚠ {status.message}
+              </p>
+            )}
+            {status.state === "loading" && (
+              <p aria-live="polite" role="status" className="mt-3 text-xs text-muted-foreground">
+                Sending your message directly via Resend...
+              </p>
+            )}
+            {status.state === "idle" && (
+              <p className="mt-3 text-xs text-muted-foreground">
+                Your message is delivered directly to balajimurugan1708@gmail.com with an auto-generated context subject.
+              </p>
+            )}
           </form>
         </div>
       </div>
